@@ -36,23 +36,20 @@ contract SupplyChain {
     uint amountToRefund = msg.value - _price;
     items[_sku].buyer.transfer(amountToRefund);
   }
-  /* use what you learned about modifiers
-   to give them functionality. For example, the forSale modifier should require
-   that the item with the given sku has the state ForSale. */
   modifier forSale(uint _sku) {
     require(items[_sku].state == State.ForSale);
     _;
   }
-  modifier sold() {
-
+  modifier sold(uint _sku) {
+    require(items[_sku].state == State.Sold);
     _;
   }
-  modifier shipped() {
-
+  modifier shipped(uint _sku) {
+    require(items[_sku].state == State.Shipped);
     _;
   }
-  modifier received() {
-
+  modifier received(uint _sku) {
+    require(items[_sku].state == State.Received);
     _;
   }
 
