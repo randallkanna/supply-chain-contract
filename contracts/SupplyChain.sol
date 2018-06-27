@@ -19,17 +19,15 @@ contract SupplyChain {
     address buyer;
   }
 
-    event LogForSale(uint sku);
-    event LogSold(uint sku);
-    event LogShipped(uint sku);
-    event LogReceived(uint sku);
+  event LogForSale(uint sku);
+  event LogSold(uint sku);
+  event LogShipped(uint sku);
+  event LogReceived(uint sku);
 
   modifier verifyOwner (address _address) {
     require(owner == msg.sender); _;
   }
-
   modifier verifyCaller (address _address) { require (msg.sender == _address); _;}
-
   modifier paidEnough(uint _price) { require(msg.value >= _price); _;}
   modifier checkValue(uint _sku) {
     //refund them after pay for item (why it is before, _ checks for logic before func)
@@ -38,14 +36,22 @@ contract SupplyChain {
     uint amountToRefund = msg.value - _price;
     items[_sku].buyer.transfer(amountToRefund);
   }
-
   /* use what you learned about modifiers
    to give them functionality. For example, the forSale modifier should require
    that the item with the given sku has the state ForSale. */
-   modifier forSale(uint skuCount) {};
-  modifier sold() {};
-  modifier shipped() {};
-  modifier received() {};
+  modifier forSale(uint _sku) {
+    require(items[_sku].state == State.ForSale);
+    _;
+  }
+  /* modifier sold() {
+
+  }
+  modifier shipped() {
+
+  }
+  modifier received() {
+
+  } */
 
   constructor() public {
     owner = msg.sender;
