@@ -1,11 +1,9 @@
 pragma solidity ^0.4.23;
 
 contract SupplyChain {
-
   address public owner;
-
   /* Add a variable called skuCount to track the most recent sku # */
-  var skuCount;
+  uint skuCount;
 
   mapping(uint => Item) public items;
 
@@ -16,6 +14,9 @@ contract SupplyChain {
     Received
     (declaring them in this order is important for testing)
   */
+  enum State {
+    ForSale, Sold, Shipped, Received
+  }
 
   /* Create a struct named Item.
     Here, add a name, sku, price, state, seller, and buyer
@@ -26,7 +27,7 @@ contract SupplyChain {
     address name;
     uint sku; // might need to change this
     uint price;
-    //
+    uint state;
     address seller;
     address buyer;
   }
@@ -53,11 +54,10 @@ contract SupplyChain {
   /* For each of the following modifiers, use what you learned about modifiers
    to give them functionality. For example, the forSale modifier should require
    that the item with the given sku has the state ForSale. */
-  modifier forSale
-  modifier sold
-  modifier shipped
-  modifier received
-
+  /* modifier forSale() {};
+  modifier sold() {};
+  modifier shipped() {};
+  modifier received() {}; */
 
   constructor() public {
     /* Here, set the owner as the person who instantiated the contract
@@ -66,7 +66,7 @@ contract SupplyChain {
   }
 
   function addItem(string _name, uint _price) public {
-    emit ForSale(skuCount);
+    /* emit ForSale(skuCount); */ // comment this back in 
     items[skuCount] = Item({name: _name, sku: skuCount, price: _price, state: State.ForSale, seller: msg.sender, buyer: 0});
     skuCount = skuCount + 1;
   }
@@ -93,7 +93,6 @@ contract SupplyChain {
     public
   {}
 
-  /* We have these functions completed so we can run tests, just ignore it :) */
   function fetchItem(uint _sku) public view returns (string name, uint sku, uint price, uint state, address seller, address buyer) {
     name = items[_sku].name;
     sku = items[_sku].sku;
