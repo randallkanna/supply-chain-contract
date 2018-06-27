@@ -1,0 +1,104 @@
+{
+  "contractName": "SupplyChain",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a723058207c19562a94a2fcf37aeb1f14e88f0a8342c7aeca78dd61747456b730799434b40029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a723058207c19562a94a2fcf37aeb1f14e88f0a8342c7aeca78dd61747456b730799434b40029",
+  "sourceMap": "26:25:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;26:25:1;;;;;;;",
+  "deployedSourceMap": "26:25:1:-;;;;;",
+  "source": "pragma solidity ^0.4.23;\n\ncontract SupplyChain {\n\n}\n",
+  "sourcePath": "/Users/randallkanna/Documents/code/eth/supply-chain-contract/contracts/SupplyChain.sol",
+  "ast": {
+    "absolutePath": "/Users/randallkanna/Documents/code/eth/supply-chain-contract/contracts/SupplyChain.sol",
+    "exportedSymbols": {
+      "SupplyChain": [
+        59
+      ]
+    },
+    "id": 60,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 58,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".23"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 59,
+        "linearizedBaseContracts": [
+          59
+        ],
+        "name": "SupplyChain",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 60,
+        "src": "26:25:1"
+      }
+    ],
+    "src": "0:52:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/randallkanna/Documents/code/eth/supply-chain-contract/contracts/SupplyChain.sol",
+    "exportedSymbols": {
+      "SupplyChain": [
+        59
+      ]
+    },
+    "id": 60,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 58,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".23"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 59,
+        "linearizedBaseContracts": [
+          59
+        ],
+        "name": "SupplyChain",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 60,
+        "src": "26:25:1"
+      }
+    ],
+    "src": "0:52:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.23+commit.124ca40d.Emscripten.clang"
+  },
+  "networks": {
+    "4447": {
+      "events": {},
+      "links": {},
+      "address": "0x345ca3e014aaf5dca488057592ee47305d9b3e10",
+      "transactionHash": "0xb4780d821bd8a73e634508539aa0e414cf2f3bee10ab27085b1228b716016d93"
+    }
+  },
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-06-27T04:10:30.671Z"
+}
