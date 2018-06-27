@@ -2,18 +2,10 @@ pragma solidity ^0.4.23;
 
 contract SupplyChain {
   address public owner;
-  /* Add a variable called skuCount to track the most recent sku # */
   uint skuCount;
 
   mapping(uint => Item) public items;
 
-  /* Add a line that creates an enum called State. This should have 4 states
-    ForSale
-    Sold
-    Shipped
-    Received
-    (declaring them in this order is important for testing)
-  */
   enum State {
     ForSale, Sold, Shipped, Received
   }
@@ -62,9 +54,8 @@ contract SupplyChain {
   modifier received() {}; */
 
   constructor() public {
-    /* Here, set the owner as the person who instantiated the contract
-       and set your skuCount to 0. */
     owner = msg.sender;
+    skuCount = 0;
   }
 
   function addItem(string _name, uint _price) public {
