@@ -43,15 +43,18 @@ contract SupplyChain {
     require(items[_sku].state == State.ForSale);
     _;
   }
-  /* modifier sold() {
+  modifier sold() {
 
+    _;
   }
   modifier shipped() {
 
+    _;
   }
   modifier received() {
 
-  } */
+    _;
+  }
 
   constructor() public {
     owner = msg.sender;
@@ -59,7 +62,7 @@ contract SupplyChain {
   }
 
   function addItem(string _name, uint _price) public {
-    /* emit ForSale(skuCount); */ // comment this back in
+    /* emit ForSale(skuCount); // comment this back in */
     items[skuCount] = Item({name: _name, sku: skuCount, price: _price, state: State.ForSale, seller: msg.sender, buyer: 0});
     skuCount = skuCount + 1;
   }
