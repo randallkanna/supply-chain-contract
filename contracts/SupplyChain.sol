@@ -10,16 +10,9 @@ contract SupplyChain {
     ForSale, Sold, Shipped, Received
   }
 
-  /* Create a struct named Item.
-    Here, add a name, sku, price, state, seller, and buyer
-    We've left you to figure out what the appropriate types are,
-    if you need help you can ask around :)
-  */
-  /* price: _price, state: State.ForSale, seller: msg.sender, buyer: 0}); */
-
   struct Item {
     string name;
-    uint sku; // might need to change this
+    uint sku;
     uint price;
     State state;
     address seller;
@@ -32,7 +25,9 @@ contract SupplyChain {
     event LogReceived(uint sku);
 
 /* Create a modifer that checks if the msg.sender is the owner of the contract */
-  /* modifier verify */
+  modifier verifyOwner (address _address) {
+    require(owner == msg.sender); _;
+  }
 
   modifier verifyCaller (address _address) { require (msg.sender == _address); _;}
 
