@@ -24,7 +24,6 @@ contract SupplyChain {
     event LogShipped(uint sku);
     event LogReceived(uint sku);
 
-/* Create a modifer that checks if the msg.sender is the owner of the contract */
   modifier verifyOwner (address _address) {
     require(owner == msg.sender); _;
   }
@@ -40,13 +39,13 @@ contract SupplyChain {
     items[_sku].buyer.transfer(amountToRefund);
   }
 
-  /* For each of the following modifiers, use what you learned about modifiers
+  /* use what you learned about modifiers
    to give them functionality. For example, the forSale modifier should require
    that the item with the given sku has the state ForSale. */
-  /* modifier forSale() {};
+   modifier forSale(uint skuCount) {};
   modifier sold() {};
   modifier shipped() {};
-  modifier received() {}; */
+  modifier received() {};
 
   constructor() public {
     owner = msg.sender;
