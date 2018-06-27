@@ -1,14 +1,11 @@
 pragma solidity ^0.4.23;
 
 contract SupplyChain {
-
   address public owner;
-
   /* Add a variable called skuCount to track the most recent sku # */
+  uint skuCount;
 
-  /* Add a line that creates a public mapping that maps the SKU (a number) to an Item.
-     Call this mappings items
-  */
+  mapping(uint => Item) public items;
 
   /* Add a line that creates an enum called State. This should have 4 states
     ForSale
@@ -17,17 +14,33 @@ contract SupplyChain {
     Received
     (declaring them in this order is important for testing)
   */
+  enum State {
+    ForSale, Sold, Shipped, Received
+  }
 
   /* Create a struct named Item.
     Here, add a name, sku, price, state, seller, and buyer
     We've left you to figure out what the appropriate types are,
     if you need help you can ask around :)
   */
+  /* price: _price, state: State.ForSale, seller: msg.sender, buyer: 0}); */
 
-  /* Create 4 events with the same name as each possible State (see above)
-    Each event should accept one argument, the sku*/
+  struct Item {
+    string name;
+    uint sku; // might need to change this
+    uint price;
+    State state;
+    address seller;
+    address buyer;
+  }
+
+    event LogForSale(uint sku);
+    event LogSold(uint sku);
+    event LogShipped(uint sku);
+    event LogReceived(uint sku);
 
 /* Create a modifer that checks if the msg.sender is the owner of the contract */
+  /* modifier verify */
 
   modifier verifyCaller (address _address) { require (msg.sender == _address); _;}
 
@@ -43,11 +56,10 @@ contract SupplyChain {
   /* For each of the following modifiers, use what you learned about modifiers
    to give them functionality. For example, the forSale modifier should require
    that the item with the given sku has the state ForSale. */
-  modifier forSale
-  modifier sold
-  modifier shipped
-  modifier received
-
+  /* modifier forSale() {};
+  modifier sold() {};
+  modifier shipped() {};
+  modifier received() {}; */
 
   constructor() public {
     /* Here, set the owner as the person who instantiated the contract
@@ -56,7 +68,7 @@ contract SupplyChain {
   }
 
   function addItem(string _name, uint _price) public {
-    emit ForSale(skuCount);
+    /* emit ForSale(skuCount); */ // comment this back in
     items[skuCount] = Item({name: _name, sku: skuCount, price: _price, state: State.ForSale, seller: msg.sender, buyer: 0});
     skuCount = skuCount + 1;
   }
@@ -83,7 +95,6 @@ contract SupplyChain {
     public
   {}
 
-  /* We have these functions completed so we can run tests, just ignore it :) */
   function fetchItem(uint _sku) public view returns (string name, uint sku, uint price, uint state, address seller, address buyer) {
     name = items[_sku].name;
     sku = items[_sku].sku;
