@@ -23,11 +23,13 @@ contract SupplyChain {
     We've left you to figure out what the appropriate types are,
     if you need help you can ask around :)
   */
+  /* price: _price, state: State.ForSale, seller: msg.sender, buyer: 0}); */
+
   struct Item {
-    address name;
+    string name;
     uint sku; // might need to change this
     uint price;
-    uint state;
+    State state;
     address seller;
     address buyer;
   }
@@ -66,7 +68,7 @@ contract SupplyChain {
   }
 
   function addItem(string _name, uint _price) public {
-    /* emit ForSale(skuCount); */ // comment this back in 
+    /* emit ForSale(skuCount); */ // comment this back in
     items[skuCount] = Item({name: _name, sku: skuCount, price: _price, state: State.ForSale, seller: msg.sender, buyer: 0});
     skuCount = skuCount + 1;
   }
