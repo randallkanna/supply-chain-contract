@@ -5,10 +5,8 @@ contract SupplyChain {
   address public owner;
 
   /* Add a variable called skuCount to track the most recent sku # */
+  var skuCount;
 
-  /* Add a line that creates a public mapping that maps the SKU (a number) to an Item.
-     Call this mappings items
-  */
   mapping(uint => Item) public items;
 
   /* Add a line that creates an enum called State. This should have 4 states
@@ -24,11 +22,22 @@ contract SupplyChain {
     We've left you to figure out what the appropriate types are,
     if you need help you can ask around :)
   */
+  struct Item {
+    address name;
+    uint sku; // might need to change this
+    uint price;
+    //
+    address seller;
+    address buyer;
+  }
 
-  /* Create 4 events with the same name as each possible State (see above)
-    Each event should accept one argument, the sku*/
+    event LogForSale(uint sku);
+    event LogSold(uint sku);
+    event LogShipped(uint sku);
+    event LogReceived(uint sku);
 
 /* Create a modifer that checks if the msg.sender is the owner of the contract */
+  /* modifier verify */
 
   modifier verifyCaller (address _address) { require (msg.sender == _address); _;}
 
