@@ -64,27 +64,31 @@ contract SupplyChain {
     skuCount = skuCount + 1;
   }
 
-  /* Add a keyword so the function can be paid. This function should transfer money
-    to the seller, set the buyer as the person who called this transaction, and set the state
-    to Sold. Be careful, this function should use 3 modifiers to check if the item is for sale,
-    if the buyer paid enough, and check the value after the function is called to make sure the buyer is
-    refunded any excess ether sent. Remember to call the event associated with this function!*/
+  /*
+    This function should transfer money to the seller,
+    set the buyer as the person who called this transaction, and set the state to Sold.
 
-  function buyItem(uint sku)
-    public
-  {}
+    Be careful, this function should use 3 modifiers to check if the item is for sale, if the buyer paid enough,
+    and check the value after the function is called to make sure the buyer is refunded any excess ether sent.
+  */
+
+  function buyItem(uint sku) public payable {
+    
+
+    emit LogSold(sku); // double check this is the event associated with this function
+  }
 
   /* Add 2 modifiers to check if the item is sold already, and that the person calling this function
   is the seller. Change the state of the item to shipped. Remember to call the event associated with this function!*/
-  function shipItem(uint sku)
-    public
-  {}
+  function shipItem(uint sku) public {
+
+  }
 
   /* Add 2 modifiers to check if the item is shipped already, and that the person calling this function
   is the buyer. Change the state of the item to received. Remember to call the event associated with this function!*/
-  function receiveItem(uint sku)
-    public
-  {}
+  function receiveItem(uint sku) public {
+
+  }
 
   function fetchItem(uint _sku) public view returns (string name, uint sku, uint price, uint state, address seller, address buyer) {
     name = items[_sku].name;
