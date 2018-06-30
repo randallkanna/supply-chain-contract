@@ -73,21 +73,30 @@ contract SupplyChain {
   */
 
   function buyItem(uint sku) public payable {
-    
+
 
     emit LogSold(sku); // double check this is the event associated with this function
   }
 
   /* Add 2 modifiers to check if the item is sold already, and that the person calling this function
-  is the seller. Change the state of the item to shipped. Remember to call the event associated with this function!*/
+  is the seller.
+
+  Change the state of the item to shipped.
+  */
   function shipItem(uint sku) public {
 
+    emit LogShipped(sku);
   }
 
-  /* Add 2 modifiers to check if the item is shipped already, and that the person calling this function
-  is the buyer. Change the state of the item to received. Remember to call the event associated with this function!*/
+  /*
+    Add 2 modifiers to check if the item is shipped already, and that the person calling this function
+    is the buyer.
+
+    Change the state of the item to received.
+  */
   function receiveItem(uint sku) public {
 
+    emit LogReceived(sku);
   }
 
   function fetchItem(uint _sku) public view returns (string name, uint sku, uint price, uint state, address seller, address buyer) {
