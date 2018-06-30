@@ -19,10 +19,10 @@ contract SupplyChain {
     address buyer;
   }
 
-  event LogForSale(uint sku);
-  event LogSold(uint sku);
-  event LogShipped(uint sku);
-  event LogReceived(uint sku);
+  event ForSale(uint sku);
+  event Sold(uint sku);
+  event Shipped(uint sku);
+  event Received(uint sku);
 
   modifier verifyOwner (address _address) {
     require(owner == msg.sender); _;
@@ -59,20 +59,12 @@ contract SupplyChain {
   }
 
   function addItem(string _name, uint _price) public {
-    /* emit ForSale(skuCount); // comment this back in */
+    emit ForSale(skuCount); // comment this back in
     items[skuCount] = Item({name: _name, sku: skuCount, price: _price, state: State.ForSale, seller: msg.sender, buyer: 0});
     skuCount = skuCount + 1;
   }
 
-  /*
-    This function should transfer money to the seller,
-    set the buyer as the person who called this transaction, and set the state to Sold.
-
-    Be careful, this function should use 3 modifiers to check if the item is for sale, if the buyer paid enough,
-    and check the value after the function is called to make sure the buyer is refunded any excess ether sent.
-  */
-  function buyItem(uint sku) public payable {
-    // use modifiers
+  function buyItem(uint sku) public payable forSale(sku) paidEnough(msg.value) checkValue(sku){
     var seller = items[sku].seller;
     var itemCost = items[sku].price;
     seller.transfer(itemCost);
@@ -80,7 +72,7 @@ contract SupplyChain {
     items[sku].buyer = msg.sender;
     items[sku].state = State.Sold;
 
-    emit LogSold(sku); // double check this is the event associated with this function
+    emit Sold(sku);
   }
 
   /* Add 2 modifiers to check if the item is sold already, and that the person calling this function
@@ -90,7 +82,7 @@ contract SupplyChain {
   */
   function shipItem(uint sku) public {
 
-    emit LogShipped(sku);
+    emit Shipped(sku);
   }
 
   /*
@@ -101,7 +93,7 @@ contract SupplyChain {
   */
   function receiveItem(uint sku) public {
 
-    emit LogReceived(sku);
+    emit Received(sku);
   }
 
   function fetchItem(uint _sku) public view returns (string name, uint sku, uint price, uint state, address seller, address buyer) {
