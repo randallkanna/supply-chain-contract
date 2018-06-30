@@ -59,7 +59,7 @@ contract SupplyChain {
   }
 
   function addItem(string _name, uint _price) public {
-    emit ForSale(skuCount); // comment this back in
+    emit ForSale(skuCount);
     items[skuCount] = Item({name: _name, sku: skuCount, price: _price, state: State.ForSale, seller: msg.sender, buyer: 0});
     skuCount = skuCount + 1;
   }
@@ -81,13 +81,9 @@ contract SupplyChain {
     emit Shipped(sku);
   }
 
-  /*
-    Add 2 modifiers to check if the item is shipped already, and that the person calling this function
-    is the buyer.
+  function receiveItem(uint sku) public shipped(sku) verifyCaller(msg.sender) {
 
-    Change the state of the item to received.
-  */
-  function receiveItem(uint sku) public {
+    items[sku].state = State.Received;
 
     emit Received(sku);
   }
