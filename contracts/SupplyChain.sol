@@ -79,7 +79,7 @@ contract SupplyChain {
     items[sku].buyer = msg.sender;
     items[sku].state = State.Sold;
 
-    emit LogSold(sku);
+    emit Sold(sku);
   }
 
   /* Add 2 modifiers to check if the item is sold already, and that the person calling this function
@@ -89,7 +89,7 @@ contract SupplyChain {
   */
   function shipItem(uint sku) public {
 
-    emit LogShipped(sku);
+    emit Shipped(sku);
   }
 
   /*
@@ -100,7 +100,7 @@ contract SupplyChain {
   */
   function receiveItem(uint sku) public {
 
-    emit LogReceived(sku);
+    emit Received(sku);
   }
 
   function fetchItem(uint _sku) public view returns (string name, uint sku, uint price, uint state, address seller, address buyer) {
