@@ -64,13 +64,6 @@ contract SupplyChain {
     skuCount = skuCount + 1;
   }
 
-  /*
-    This function should transfer money to the seller,
-    set the buyer as the person who called this transaction, and set the state to Sold.
-
-    Be careful, this function should use 3 modifiers to check if the item is for sale, if the buyer paid enough,
-    and check the value after the function is called to make sure the buyer is refunded any excess ether sent.
-  */
   function buyItem(uint sku) public payable forSale(sku) paidEnough(msg.value) checkValue(sku){
     var seller = items[sku].seller;
     var itemCost = items[sku].price;
