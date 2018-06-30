@@ -75,7 +75,6 @@ contract SupplyChain {
     emit Sold(sku);
   }
 
-  // TODO - Add 2 modifiers to check if the item is sold already, and that the person calling this function is the seller.
   function shipItem(uint sku) public sold(sku) verifyCaller(msg.sender) {
     items[sku].state = State.Shipped;
 
