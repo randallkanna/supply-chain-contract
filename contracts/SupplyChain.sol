@@ -71,9 +71,14 @@ contract SupplyChain {
     Be careful, this function should use 3 modifiers to check if the item is for sale, if the buyer paid enough,
     and check the value after the function is called to make sure the buyer is refunded any excess ether sent.
   */
-
   function buyItem(uint sku) public payable {
+    // use modifiers
+    var seller = items[sku].seller;
+    var itemCost = items[sku].price;
+    seller.transfer(itemCost);
 
+    items[sku].buyer = msg.sender;
+    items[sku].state = State.Sold;
 
     emit LogSold(sku); // double check this is the event associated with this function
   }
