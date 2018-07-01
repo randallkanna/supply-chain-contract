@@ -11,6 +11,7 @@ contract TestSupplyChain {
     // test that every modifier is working
 
     // buyItem
+    /* it("should allow a user to buy an item") */
 
     // test for failure if user does not send enough funds
     // test for purchasing an item that is not for Sale
