@@ -5,6 +5,7 @@ import "truffle/DeployedAddresses.sol";
 import "../contracts/SupplyChain.sol";
 
 contract TestSupplyChain {
+  var [firstAccount, secondAccount] = accounts;
   SupplyChain chain = SupplyChain(DeployedAddresses.SupplyChain());
 
   /* uint numberOfElements = dummyContract.getNumberOfElements(); */
@@ -18,12 +19,13 @@ contract TestSupplyChain {
     // test for failure if user does not send enough funds
     chain.addItem("test", 1 ether);
 
-    /* chain.buyItem(address(chain), 1); */
+    /* bool attempt = chain.buyItem(); */
 
-    // asser that it fails
-    /* Asssert.isFalse(result, false, ''); */
+
+    /* bool attemptPurchase = chain.buyItem(testItem.sku); */
+    // assert that it fails
     /* Assert.equal(mycontract.mynumber(), expected, "First number set should be 24."); */
-
+    /* Assert.isFalse(attempt, false, 'user does not have sufficient funds'); */
   }
 
   // test for purchasing an item that is not for Sale
